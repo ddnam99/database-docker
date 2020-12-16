@@ -1,0 +1,26 @@
+version: "3.4"
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+    restart: ${RESTART}
+    environment:
+        - discovery.type=single-node
+        - cluster.name=docker-cluster
+    ports:
+        - ${ELASTIC_PORT}:9200
+        - 9300
+    volumes:
+        - elasticsearch-data:/usr/share/elasticsearch/data
+        
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.0
+    restart: ${RESTART}
+    ports:
+        - ${KIBANA_PORT}:5601
+    depends_on:
+        - elasticsearch
+
+volumes:
+  elasticsearch-data:
+    external: true

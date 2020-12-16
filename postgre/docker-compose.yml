@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+  postgre:
+    image: postgres:10
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    restart: ${RESTART}
+    ports:
+      - ${PORT}:5432
+    volumes:
+      - postgre-data:/var/lib/postgresql/data
+
+volumes:
+   postgre-data:
+      external: true
+
