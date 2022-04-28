@@ -8,7 +8,7 @@ services:
       - ${PORT}:6379
     volumes: 
       - redis-data:/data
-    command: redis-server --appendonly yes --requirepass ${PASSWORD }
+    command: redis-server --appendonly yes --requirepass ${PASSWORD}
 
 volumes:
   redis-data:
